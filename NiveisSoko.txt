@@ -1,6 +1,0 @@
-Os niveis são lidos pelo código da seguinte forma.
-
-0 = chão
-1 = parede 
-2 = caixa
-3 = alvo
