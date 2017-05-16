@@ -43,7 +43,7 @@ public class MenuState extends State{
 	@Override
 	public void render(Graphics g) {
 		g.setFont(Assets.font48);
-		Text.drawString(g, "SOKOBAN", TelaPrincipal.WIDTH/2, TelaPrincipal.HEIGHT/2 - 200, true, Color.DARK_GRAY);
+		Text.drawString(g, "APS | 2017", TelaPrincipal.WIDTH/2, TelaPrincipal.HEIGHT/2 - 200, true, Color.DARK_GRAY);
 		for(int i = 0; i < buttons.size(); i++)
 			buttons.get(i).render(g);
 	}
