@@ -8,14 +8,14 @@ Os niveis são lidos pelo código da seguinte forma.
 
 Exemplo: 
 
-9 9 (numero de linhas, numero de colunas)
-4 4
-1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1
-1 1 1 3 1 1 1 1 1
-1 1 1 0 1 1 1 1 1
-1 1 1 2 0 2 3 1 1
-1 3 0 2 0 1 1 1 1
-1 1 1 1 2 1 1 1 1
-1 1 1 1 3 1 1 1 1
-1 1 1 1 1 1 1 1 1
+8 9 => numero de colunas, numero de linhas)
+4 4 => Posição inicial do jogador Linha x Coluna 
+1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 
+1 1 1 3 1 1 1 1 
+1 1 1 0 1 1 1 1 
+1 1 1 2 0 2 3 1 
+1 3 0 2 0 1 1 1 
+1 1 1 1 2 1 1 1 
+1 1 1 1 3 1 1 1 
+1 1 1 1 1 1 1 1 
