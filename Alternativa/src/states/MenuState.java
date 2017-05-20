@@ -24,10 +24,10 @@ public class MenuState extends State{
 				State.currentState = window.getLevelSelectorState();
 			}}, Assets.font48));
 		
-		buttons.add(new Button("CREDITS", Window.WIDTH/2, Window.HEIGHT/2 + 50, new Click(){
+		buttons.add(new Button("Como Jogar", Window.WIDTH/2, Window.HEIGHT/2 + 50, new Click(){
 
 			public void onClick() {
-				State.currentState = window.getLevelSelectorState();
+				State.currentState = window.getComoJogar();
 			}}, Assets.font48));
 		
 		buttons.add(new Button("EXIT", Window.WIDTH/2, Window.HEIGHT/2 + 150, new Click(){
