@@ -2,15 +2,15 @@ package states;
 
 import java.awt.Graphics;
 
-import main.TelaPrincipal;
+import main.Window;
 import sokoban.Level;
 
 public class GameState extends State{
 	
 	private Level level;
 	
-	public GameState(TelaPrincipal telaPrincipal) {
-		super(telaPrincipal);
+	public GameState(Window window) {
+		super(window);
 	}
 	
 	@Override

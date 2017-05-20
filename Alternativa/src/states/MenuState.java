@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import gfx.Assets;
 import gfx.Text;
-import main.TelaPrincipal;
+import main.Window;
 import ui.Button;
 import ui.Click;
 
@@ -16,19 +16,22 @@ public class MenuState extends State{
 	
 	private ArrayList<Button> buttons = new ArrayList<Button>();
 	
-	public MenuState(TelaPrincipal telaPrincipal){
-		super(telaPrincipal);
-		buttons.add(new Button("JOGAR", TelaPrincipal.WIDTH/2, TelaPrincipal.HEIGHT/2 - 50, new Click(){
+	public MenuState(Window window){
+		super(window);
+		buttons.add(new Button("PLAY", Window.WIDTH/2, Window.HEIGHT/2 - 50, new Click(){
 
-		
-
-			//@Override
 			public void onClick() {
-				State.currentState = telaPrincipal.getLevelSelectorState();
+				State.currentState = window.getLevelSelectorState();
 			}}, Assets.font48));
-		buttons.add(new Button("SAIR", TelaPrincipal.WIDTH/2, TelaPrincipal.HEIGHT/2 + 50, new Click(){
+		
+		buttons.add(new Button("CREDITS", Window.WIDTH/2, Window.HEIGHT/2 + 50, new Click(){
 
-			//@Override
+			public void onClick() {
+				State.currentState = window.getLevelSelectorState();
+			}}, Assets.font48));
+		
+		buttons.add(new Button("EXIT", Window.WIDTH/2, Window.HEIGHT/2 + 150, new Click(){
+
 			public void onClick() {
 				System.exit(1);
 			}}, Assets.font48));
@@ -43,7 +46,7 @@ public class MenuState extends State{
 	@Override
 	public void render(Graphics g) {
 		g.setFont(Assets.font48);
-		Text.drawString(g, "APS | 2017", TelaPrincipal.WIDTH/2, TelaPrincipal.HEIGHT/2 - 200, true, Color.DARK_GRAY);
+		Text.drawString(g, "SOKOBAN", Window.WIDTH/2, Window.HEIGHT/2 - 200, true, Color.DARK_GRAY);
 		for(int i = 0; i < buttons.size(); i++)
 			buttons.get(i).render(g);
 	}

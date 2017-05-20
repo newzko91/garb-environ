@@ -15,12 +15,11 @@ public class Assets {
 	
 	public static Image playerLeft, playerBack, playerRight, PlayerFront;
 	
-	public static Image floor, floor2, floor3, floor4, wall, boxOn, boxOff, spot, outline, outline2;
+	public static Image floor, floor2, floor3, floor4,wall, boxOn, boxOff, spot, outline, outline2;
 	
 	public static Font font48;
 	public static Font font30;
 	public static Font font22;
-	public static Font fontArial;
 	
 	public static void init()
 	{
@@ -31,8 +30,8 @@ public class Assets {
 		
 		floor = loadImage("/blocks/ground.png").getScaledInstance(Level.TILESIZE, Level.TILESIZE, BufferedImage.SCALE_DEFAULT);
 		floor2 = loadImage("/blocks/ground2.png").getScaledInstance(Level.TILESIZE, Level.TILESIZE, BufferedImage.SCALE_DEFAULT);
-		floor3 = loadImage("/blocks/floor3.png").getScaledInstance(Level.TILESIZE, Level.TILESIZE, BufferedImage.SCALE_DEFAULT);
-		floor4 = loadImage("/blocks/floor4.png").getScaledInstance(660, 218, BufferedImage.SCALE_SMOOTH);
+		floor3 = loadImage("/blocks/ground3.png").getScaledInstance(800, 600, BufferedImage.SCALE_SMOOTH);
+		floor4 = loadImage("/blocks/ground4.png").getScaledInstance(Level.TILESIZE, Level.TILESIZE, BufferedImage.SCALE_DEFAULT);
 		wall = loadImage("/blocks/redBrick.png").getScaledInstance(Level.TILESIZE, Level.TILESIZE, BufferedImage.SCALE_DEFAULT);
 		boxOn = loadImage("/blocks/boxOn.png").getScaledInstance(Level.TILESIZE, Level.TILESIZE, BufferedImage.SCALE_DEFAULT);
 		boxOff = loadImage("/blocks/boxOff.png").getScaledInstance(Level.TILESIZE, Level.TILESIZE, BufferedImage.SCALE_DEFAULT);
@@ -40,10 +39,9 @@ public class Assets {
 		outline = loadImage("/blocks/outline.png").getScaledInstance(64, 64, BufferedImage.SCALE_DEFAULT);
 		outline2 = loadImage("/blocks/outline2.png").getScaledInstance(64, 64, BufferedImage.SCALE_DEFAULT);
 		
-		font48 = loadFont("res/fonts/square.ttf", 48);
-		font22 = loadFont("res/fonts/square.ttf", 22);
-		font30 = loadFont("res/fonts/square.ttf", 30);
-		fontArial = new Font("Times New Roman", Font.BOLD, 80);
+		font48 = loadFont("res/fonts/SuperMario256.ttf", 48);
+		font22 = loadFont("res/fonts/SuperMario256.ttf", 22);
+		font30 = loadFont("res/fonts/SuperMario256.ttf", 30);
 		
 	}
 	

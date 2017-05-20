@@ -5,7 +5,7 @@ import java.awt.Image;
 
 import gfx.Assets;
 import input.KeyBoard;
-import main.TelaPrincipal;
+import main.Window;
 import states.LevelSelectorState;
 import states.State;
 import ui.Button;
@@ -41,7 +41,6 @@ public class Level {
 	
 	private int id;
 	
-	//Construtor
 	
 	public Level(int[][] maze, int player_row, int player_col, LevelSelectorState levelSelectorState){
 		this.levelSelectorState = levelSelectorState;
@@ -60,12 +59,10 @@ public class Level {
 			solved = true;
 		else
 			solved = false;
-		xOffset = (TelaPrincipal.WIDTH - maze[0].length*TILESIZE)/2;
-		yOffset = (TelaPrincipal.HEIGHT - maze.length*TILESIZE)/2;
+		xOffset = (Window.WIDTH - maze[0].length*TILESIZE)/2;
+		yOffset = (Window.HEIGHT - maze.length*TILESIZE)/2;
 		texture = Assets.PlayerFront;
-		
-		
-		restart = new Button("REFAZER", 100, TelaPrincipal.HEIGHT/2, new Click(){
+		restart = new Button("RESTART", Window.WIDTH/2 - 100, Window.HEIGHT - 50, new Click(){
 
 			@Override
 			public void onClick() {
@@ -73,7 +70,7 @@ public class Level {
 				
 			}},
 				Assets.font30);
-		back = new Button("VOLTAR", TelaPrincipal.WIDTH - 100, TelaPrincipal.HEIGHT/2, new Click(){
+		back = new Button("BACK", Window.WIDTH/2 + 100, Window.HEIGHT - 50, new Click(){
 
 			@Override
 			public void onClick() {
@@ -87,8 +84,6 @@ public class Level {
 		}
 	}
 	
-	//Metódo que posiciona os objetos na posição inicial.
-	
 	private void reset(){
 		for(int row = 0; row < maze.length; row++)
 			for(int col = 0; col < maze[row].length; col ++)
@@ -99,10 +94,6 @@ public class Level {
 		texture = Assets.PlayerFront;
 	}
 	
-	/* Método para atualizar a figura do jogador de acordo com a tecla pressionada e que
-	 * chama o método passando os parametros para alteração da posição do objeto na tela.
-	 * 
-	 */
 	
 	public void update(){
 		time += System.currentTimeMillis() - lastTime;
@@ -139,7 +130,7 @@ public class Level {
 		
 	}
 	
-	//Método que reposiciona o objeto do jogador e efetua validação 
+	
 	private void move(int row, int col){
 		if(maze[player_row + row][player_col + col] != 1){
 			if(maze[player_row + row][player_col + col] == 2 || maze[player_row + row][player_col + col] == 4){
@@ -177,7 +168,7 @@ public class Level {
 		
 		for(int row = 0; row < maze.length; row++){
 			for(int col = 0; col < maze[row].length; col ++){
-				g.drawImage(Assets.floor, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
+				g.drawImage(Assets.floor4, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
 				if(maze[row][col] == 1)
 					g.drawImage(Assets.wall, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
 				if(maze[row][col] == 2)
@@ -194,11 +185,6 @@ public class Level {
 		
 	}
 	
-	public boolean isSolved(){
-		return solved;
-	}
-	
-	public void setSolved(boolean bool){
-		solved = bool;
-	}
+	public boolean isSolved(){return solved;}
+	public void setSolved(boolean bool){solved = bool;}
 }

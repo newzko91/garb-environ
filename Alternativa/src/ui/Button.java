@@ -19,7 +19,6 @@ public class Button{
 	private Click click;
 	private Font font;
 	
-	//Construtor
 	public Button(String text, int x, int y, Click click, Font font){
 		this.text = text;
 		this.x = x;
@@ -28,7 +27,6 @@ public class Button{
 		hovering = false;
 		this.font = font;
 	}
-	
 	
 	public void update(){		
 		if(bounds != null && bounds.contains(MouseManager.x, MouseManager.y)){

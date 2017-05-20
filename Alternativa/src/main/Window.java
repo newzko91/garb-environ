@@ -13,11 +13,11 @@ import input.MouseManager;
 import sokoban.Level;
 import states.GameState;
 import states.LevelSelectorState;
-import states.TelaDeInicio;
+import states.LoadingState;
 import states.MenuState;
 import states.State;
 
-public class TelaPrincipal extends JFrame implements Runnable{
+public class Window extends JFrame implements Runnable{
 	
 	public static final int WIDTH = 800, HEIGHT = 600;
 	private Canvas canvas;
@@ -34,14 +34,15 @@ public class TelaPrincipal extends JFrame implements Runnable{
 	private GameState gameState;
 	private LevelSelectorState levelSelectorState;
 	private MenuState menuState;
-	private TelaDeInicio telaDeInicio;
+	private LoadingState loadingState;
 	
 	private KeyBoard keyBoard;
 	private MouseManager mouseManager;
 	
-	public TelaPrincipal()
+	//Construtor
+	public Window()
 	{
-		setTitle("APS Java Game");
+		setTitle("UNIP - APS");
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -65,12 +66,9 @@ public class TelaPrincipal extends JFrame implements Runnable{
 		setVisible(true);
 	}
 	
-	
-
 	public static void main(String[] args) {
-		new TelaPrincipal().start();
+		new Window().start();
 	}
-	
 	
 	private void update(){
 		if(State.currentState instanceof GameState)
@@ -85,7 +83,7 @@ public class TelaPrincipal extends JFrame implements Runnable{
 		
 		if(bs == null)
 		{
-			canvas.createBufferStrategy(3);
+			canvas.createBufferStrategy(4);
 			return;
 		}
 		
@@ -93,17 +91,21 @@ public class TelaPrincipal extends JFrame implements Runnable{
 		
 		//-----------------------
 		
-		g.setColor(Color.BLACK);
+		g.setColor(Color.GRAY);
 		
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		for(int i = 0; i < TelaPrincipal.WIDTH/Level.TILESIZE + 1; i++)
-			for(int j = 0; j < TelaPrincipal.HEIGHT/Level.TILESIZE + 1; j++)
-				g.drawImage(Assets.floor4, i*660, j*218, null);
-		
+		for(int i = 0; i < Window.WIDTH/Level.TILESIZE + 1; i++)
+			for(int j = 0; j < Window.HEIGHT/Level.TILESIZE + 1; j++)
+				//g.drawImage(Assets.floor2, i*Level.TILESIZE, j*Level.TILESIZE, null);
+				g.drawImage(Assets.floor3, i*600, j*353, null);
+	
 		if(State.currentState != null)
 			State.currentState.render(g);
-
+		
+		//g.drawString(""+AVERAGEFPS, 10, 20);
+		
+		//---------------------
 		g.dispose();
 		bs.show();
 	}
@@ -113,9 +115,9 @@ public class TelaPrincipal extends JFrame implements Runnable{
 		Assets.init();
 		menuState = new MenuState(this);
 		gameState = new GameState(this);
-		telaDeInicio = new TelaDeInicio(this);
+		loadingState = new LoadingState(this);
 		levelSelectorState = new LevelSelectorState(this);
-		State.currentState = telaDeInicio;
+		State.currentState = loadingState;
 	}
 	
 	
