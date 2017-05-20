@@ -16,6 +16,7 @@ import states.LevelSelectorState;
 import states.LoadingState;
 import states.MenuState;
 import states.State;
+import states.ComoJogar;
 
 public class Window extends JFrame implements Runnable{
 	
@@ -34,6 +35,7 @@ public class Window extends JFrame implements Runnable{
 	private GameState gameState;
 	private LevelSelectorState levelSelectorState;
 	private MenuState menuState;
+	private ComoJogar comoJogar;
 	private LoadingState loadingState;
 	
 	private KeyBoard keyBoard;
@@ -117,6 +119,8 @@ public class Window extends JFrame implements Runnable{
 		gameState = new GameState(this);
 		loadingState = new LoadingState(this);
 		levelSelectorState = new LevelSelectorState(this);
+		comoJogar = new ComoJogar(this);
+		
 		State.currentState = loadingState;
 	}
 	
@@ -180,6 +184,10 @@ public class Window extends JFrame implements Runnable{
 	}
 	public State getMenuState(){
 		return menuState;
+	}
+	
+	public State getComoJogar(){
+		return comoJogar;
 	}
 	
 	
