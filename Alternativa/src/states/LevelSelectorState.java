@@ -19,6 +19,8 @@ import ui.Click;
 public class LevelSelectorState extends State{
 	private final int DOUBLETILESIZE = 64;
 	private Level[] levels = new Level[5];
+	private static StringBuilder builder;
+	
 	private final int xOffset = (Window.WIDTH - DOUBLETILESIZE*5)/2;
 	private final int yOffset = (Window.HEIGHT - DOUBLETILESIZE*3)-100;
 	
@@ -57,13 +59,13 @@ public class LevelSelectorState extends State{
 		return new Level(maze, player_row, player_col, this);
 	}
 	
-	//percorre o arquivo txt
+	//Efetua a leitura de cada arquivo TXT identificado no FOR acima
 	public static String loadFileAsString(String path){
-		StringBuilder builder = new StringBuilder(); 
+		builder = new StringBuilder(); 
 		try{
-		InputStream in = LevelSelectorState.class.getResourceAsStream(path);
+		InputStream is = LevelSelectorState.class.getResourceAsStream(path);
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(in));
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		
 		String line;
 		while((line = br.readLine()) != null){
@@ -96,33 +98,132 @@ public class LevelSelectorState extends State{
 		int counter = 1;
 		g.setFont(Assets.font30);
 		
-			for(int i = 0; i < 5; i++){
-				Rectangle bounds = new Rectangle(xOffset + i*DOUBLETILESIZE,
-						yOffset + DOUBLETILESIZE, DOUBLETILESIZE, DOUBLETILESIZE);
-				if(bounds.contains(MouseManager.x, MouseManager.y)){
-					if(MouseManager.left && levels[counter-1].isSolved()){
-						((GameState)window.getGameState()).setLevel(levels[counter-1]);
-						State.currentState = window.getGameState();
-					}
-					g.drawImage(Assets.outline2, bounds.x, bounds.y, null);
-					if(levels[counter-1].isSolved())
-						Text.drawString(g, counter+"", xOffset + DOUBLETILESIZE/2 + i*DOUBLETILESIZE,
-							yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
-					else
-						Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + i*DOUBLETILESIZE,
-								yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
-				}else{
-					g.drawImage(Assets.outline, bounds.x, bounds.y, null);
-					if(levels[counter-1].isSolved())
-						Text.drawString(g, counter+"", xOffset + DOUBLETILESIZE/2 + i*DOUBLETILESIZE,
-							yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.GREEN);
-					else
-						Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + i*DOUBLETILESIZE,
-								yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.BLUE);
-				}
-				counter ++;
-			}	
-	}
+		Rectangle bounds0 = new Rectangle(xOffset,
+				yOffset + DOUBLETILESIZE, DOUBLETILESIZE, DOUBLETILESIZE);
+		
+		Rectangle bounds1 = new Rectangle(xOffset + DOUBLETILESIZE,
+				yOffset + DOUBLETILESIZE, DOUBLETILESIZE, DOUBLETILESIZE);
+		
+		Rectangle bounds2 = new Rectangle(xOffset + 2*DOUBLETILESIZE,
+				yOffset + DOUBLETILESIZE, DOUBLETILESIZE, DOUBLETILESIZE);
+		
+		Rectangle bounds3 = new Rectangle(xOffset + 3*DOUBLETILESIZE,
+				yOffset + DOUBLETILESIZE, DOUBLETILESIZE, DOUBLETILESIZE);
+		
+		Rectangle bounds4 = new Rectangle(xOffset + 4*DOUBLETILESIZE,
+				yOffset + DOUBLETILESIZE, DOUBLETILESIZE, DOUBLETILESIZE);
+		
+		//Nivel 1
+		if(bounds0.contains(MouseManager.x, MouseManager.y)){
+			if(MouseManager.left && levels[0].isSolved()){
+				((GameState)window.getGameState()).setLevel(levels[0]);
+				State.currentState = window.getGameState();
+			} g.drawImage(Assets.outline2, bounds0.x, bounds0.y, null);
+			  if(levels[0].isSolved())
+				Text.drawString(g, 1+"", xOffset + DOUBLETILESIZE/2,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+			  else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+		} else{
+			g.drawImage(Assets.outline, bounds0.x, bounds0.y, null);
+			if(levels[0].isSolved())
+				Text.drawString(g, 1+"", xOffset + DOUBLETILESIZE/2,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.GREEN);
+			else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.BLUE);
+		} 
+		
+		//Nivel 2
+		if(bounds1.contains(MouseManager.x, MouseManager.y)){
+			if(MouseManager.left && levels[1].isSolved()){
+				((GameState)window.getGameState()).setLevel(levels[1]);
+				State.currentState = window.getGameState();
+			} g.drawImage(Assets.outline2, bounds1.x, bounds1.y, null);
+			  if(levels[1].isSolved())
+				Text.drawString(g, 2+"", xOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+			  else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+		} else{
+			g.drawImage(Assets.outline, bounds1.x, bounds1.y, null);
+			if(levels[1].isSolved())
+				Text.drawString(g, 2+"", xOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.GREEN);
+			else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.BLUE);
+		}
+		
+		//Nivel 3
+		if(bounds2.contains(MouseManager.x, MouseManager.y)){
+			if(MouseManager.left && levels[2].isSolved()){
+				((GameState)window.getGameState()).setLevel(levels[2]);
+				State.currentState = window.getGameState();
+			} g.drawImage(Assets.outline2, bounds2.x, bounds2.y, null);
+			  if(levels[2].isSolved())
+				Text.drawString(g, 3+"", xOffset + DOUBLETILESIZE/2 + 2*DOUBLETILESIZE,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+			  else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + 2*DOUBLETILESIZE,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+		} else{
+			g.drawImage(Assets.outline, bounds2.x, bounds2.y, null);
+			if(levels[2].isSolved())
+				Text.drawString(g, 3+"", xOffset + DOUBLETILESIZE/2 + 2*DOUBLETILESIZE,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.GREEN);
+			else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + 2*DOUBLETILESIZE,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.BLUE);
+		}
+		
+		//Nivel 4
+		if(bounds3.contains(MouseManager.x, MouseManager.y)){
+			if(MouseManager.left && levels[3].isSolved()){
+				((GameState)window.getGameState()).setLevel(levels[3]);
+				State.currentState = window.getGameState();
+			} g.drawImage(Assets.outline2, bounds3.x, bounds3.y, null);
+			  if(levels[3].isSolved())
+				Text.drawString(g, 4+"", xOffset + DOUBLETILESIZE/2 + 3*DOUBLETILESIZE,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+			  else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + 3*DOUBLETILESIZE,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+		} else{
+			g.drawImage(Assets.outline, bounds3.x, bounds3.y, null);
+			if(levels[3].isSolved())
+				Text.drawString(g, 4+"", xOffset + DOUBLETILESIZE/2 + 3*DOUBLETILESIZE,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.GREEN);
+			else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + 3*DOUBLETILESIZE,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.BLUE);
+		} 
+		
+		//Nivel 5
+		if(bounds4.contains(MouseManager.x, MouseManager.y)){
+			if(MouseManager.left && levels[4].isSolved()){
+				((GameState)window.getGameState()).setLevel(levels[4]);
+				State.currentState = window.getGameState();
+			} g.drawImage(Assets.outline2, bounds4.x, bounds4.y, null);
+			  if(levels[4].isSolved())
+				Text.drawString(g, 5+"", xOffset + DOUBLETILESIZE/2 + 4*DOUBLETILESIZE,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+			  else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + 4*DOUBLETILESIZE,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.RED);
+		} else{
+			g.drawImage(Assets.outline, bounds4.x, bounds4.y, null);
+			if(levels[4].isSolved())
+				Text.drawString(g, 5+"", xOffset + DOUBLETILESIZE/2 + 4*DOUBLETILESIZE,
+					yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.GREEN);
+			else
+				Text.drawString(g,"?", xOffset + DOUBLETILESIZE/2 + 4*DOUBLETILESIZE,
+						yOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE, true, Color.BLUE);
+		} 
 	
+	}
+				
 	public Level[] getLevels(){return levels;}
 }
