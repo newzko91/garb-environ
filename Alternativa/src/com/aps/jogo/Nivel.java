@@ -4,10 +4,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import com.aps.elementos_jogo.Assets;
+import com.aps.elementos_jogo.Elementos;
 import com.aps.main.Window;
-import com.aps.perifericos_entrada.KeyBoard;
-import com.aps.telas.LevelSelectorState;
+import com.aps.perifericos_entrada.Teclado;
+import com.aps.telas.TelaNivel;
 import com.aps.telas.TelaAtual;
 
 import ui.Botao;
@@ -29,14 +29,14 @@ public class Nivel {
 	private final int DELAY = 200;
 
 	private boolean solved;
-	private LevelSelectorState levelSelectorState;
+	private TelaNivel telaNivel;
 	public static int ID = 0;
 	private int id;
 	
 	private ArrayList<Botao> botao = new ArrayList<Botao>();
 	
-	public Nivel(int[][] maze, int player_row, int player_col, LevelSelectorState levelSelectorState){
-		this.levelSelectorState = levelSelectorState;
+	public Nivel(int[][] maze, int player_row, int player_col, TelaNivel telaNivel){
+		this.telaNivel = telaNivel;
 		this.maze = maze;
 		ID++; 
 		id = ID;
@@ -54,7 +54,7 @@ public class Nivel {
 			solved = false;
 		xOffset = (Window.WIDTH - maze[0].length*TILESIZE)/2;
 		yOffset = (Window.HEIGHT - maze.length*TILESIZE)/2;
-		texture = Assets.PlayerFront;
+		texture = Elementos.PlayerFront;
 		
 		botao.add(new Botao("RESTART", Window.WIDTH/2 - 100, Window.HEIGHT - 50, new Click(){
 
@@ -63,16 +63,16 @@ public class Nivel {
 				reset();
 				
 			}},
-				Assets.tamanho30));
+				Elementos.tamanho30));
 		
 		botao.add(new Botao("BACK", Window.WIDTH/2 + 100, Window.HEIGHT - 50, new Click(){
 
 			@Override
 			public void onClick() {
-				TelaAtual.currentState = levelSelectorState;
+				TelaAtual.currentState = telaNivel;
 				
 			}},
-				Assets.tamanho30));
+				Elementos.tamanho30));
 		
 		time = 0;
 		lastTime = System.currentTimeMillis();
@@ -86,7 +86,7 @@ public class Nivel {
 		
 		player_row = plaStartRow;
 		player_col = plaStartCol;
-		texture = Assets.PlayerFront;
+		texture = Elementos.PlayerFront;
 	}
 	
 	
@@ -94,21 +94,21 @@ public class Nivel {
 		time += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
 		
-		if(KeyBoard.UP && time > DELAY){ // se o tempo for maior que o DELAY ai sim ele move o objeto.
+		if(Teclado.UP && time > DELAY){ // se o tempo for maior que o DELAY ai sim ele move o objeto.
 			move(-1, 0);
-			texture = Assets.playerBack;
+			texture = Elementos.playerBack;
 		}
-		if(KeyBoard.LEFT && time > DELAY){
+		if(Teclado.LEFT && time > DELAY){
 			move(0, -1);
-			texture = Assets.playerLeft;
+			texture = Elementos.playerLeft;
 		}
-		if(KeyBoard.DOWN && time > DELAY){
+		if(Teclado.DOWN && time > DELAY){
 			move(1, 0);
-			texture = Assets.PlayerFront;
+			texture = Elementos.PlayerFront;
 		}
-		if(KeyBoard.RIGHT && time > DELAY){
+		if(Teclado.RIGHT && time > DELAY){
 			move(0, 1);
-			texture = Assets.playerRight;
+			texture = Elementos.playerRight;
 		}
 		
 		for(int i = 0; i < botao.size(); i++)
@@ -120,9 +120,9 @@ public class Nivel {
 				if(maze[row][col] == 2)
 					return;
 		
-		levelSelectorState.getLevels()[id].setSolved(true);
-		Assets.sucesso.play();
-		TelaAtual.currentState = levelSelectorState; //quando solucionado igual a verdadeiro, vai pra tela dos niveis.
+		telaNivel.getLevels()[id].setSolved(true);
+		Elementos.sucesso.play();
+		TelaAtual.currentState = telaNivel; //quando solucionado igual a verdadeiro, vai pra tela dos niveis.
 		
 	}
 	
@@ -166,15 +166,15 @@ public class Nivel {
 		for(int row = 0; row < maze.length; row++){
 			for(int col = 0; col < maze[row].length; col ++){
 				//desenha a figura do piso em toda a extensão
-				g.drawImage(Assets.floor4, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
+				g.drawImage(Elementos.floor4, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
 				if(maze[row][col] == 1)
-					g.drawImage(Assets.wall, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
+					g.drawImage(Elementos.wall, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
 				if(maze[row][col] == 2)
-					g.drawImage(Assets.boxOff, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
+					g.drawImage(Elementos.boxOff, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
 				if(maze[row][col] == 3)
-					g.drawImage(Assets.spot, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
+					g.drawImage(Elementos.spot, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
 				if(maze[row][col] == 4)
-					g.drawImage(Assets.boxOn, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
+					g.drawImage(Elementos.boxOn, xOffset + col*TILESIZE, yOffset + row*TILESIZE, null);
 			}
 		}
 		

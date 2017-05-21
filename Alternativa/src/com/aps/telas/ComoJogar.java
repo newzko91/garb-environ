@@ -3,8 +3,8 @@ package com.aps.telas;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.aps.elementos_jogo.Assets;
-import com.aps.elementos_jogo.Text;
+import com.aps.elementos_jogo.Elementos;
+import com.aps.elementos_jogo.Texto;
 import com.aps.main.Window;
 
 import ui.Botao;
@@ -21,10 +21,10 @@ public class ComoJogar extends TelaAtual{
 		voltar = new Botao("VOLTAR", Window.WIDTH/2, Window.HEIGHT - 100, new Click(){
 
 			public void onClick() {
-				TelaAtual.currentState = window.getMenuState();
+				TelaAtual.currentState = window.getTelaMenu();
 			}
 			
-		}, Assets.tamanho30);
+		}, Elementos.tamanho30);
 	}
 	
 	public void update(){
@@ -34,8 +34,8 @@ public class ComoJogar extends TelaAtual{
 
 	public void render(Graphics g) {
 		voltar.render(g);
-		g.setFont(Assets.tamanho22);
-		Text.drawString(g, identificacao, Window.WIDTH/2 - 300, Window.HEIGHT - 560, true, Color.WHITE);
+		g.setFont(Elementos.tamanho22);
+		Texto.drawString(g, identificacao, Window.WIDTH/2 - 300, Window.HEIGHT - 560, true, Color.WHITE);
 		
 	}
 	

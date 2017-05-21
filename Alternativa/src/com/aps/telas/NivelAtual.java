@@ -5,11 +5,11 @@ import java.awt.Graphics;
 import com.aps.jogo.Nivel;
 import com.aps.main.Window;
 
-public class GameState extends TelaAtual{
+public class NivelAtual extends TelaAtual{
 	
 	private Nivel nivel;
 	
-	public GameState(Window window) {
+	public NivelAtual(Window window) {
 		super(window);
 	}
 	

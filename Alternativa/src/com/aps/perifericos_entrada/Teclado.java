@@ -3,13 +3,13 @@ package com.aps.perifericos_entrada;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyBoard implements KeyListener{
+public class Teclado implements KeyListener{
 	
 	private boolean[] keys;
 	
 	public static boolean UP, LEFT, RIGHT, DOWN;
 	
-	public KeyBoard(){
+	public Teclado(){
 		keys = new boolean[256];
 		UP = false;
 		DOWN = false;

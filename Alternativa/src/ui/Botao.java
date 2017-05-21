@@ -6,8 +6,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.aps.elementos_jogo.Text;
-import com.aps.perifericos_entrada.MouseManager;
+import com.aps.elementos_jogo.Texto;
+import com.aps.perifericos_entrada.GerMouse;
 
 public class Botao{
 	
@@ -29,9 +29,9 @@ public class Botao{
 	}
 	
 	public void update(){		
-		if(bounds != null && bounds.contains(MouseManager.x, MouseManager.y)){
+		if(bounds != null && bounds.contains(GerMouse.x, GerMouse.y)){
 			hovering = true;
-			if(MouseManager.left)
+			if(GerMouse.left)
 				click.onClick();
 		}else
 			hovering = false;
@@ -41,9 +41,9 @@ public class Botao{
 		g.setFont(font);
 		fm = g.getFontMetrics();
 		if(hovering)
-			Text.drawString(g, text, x, y, true, Color.RED);
+			Texto.drawString(g, text, x, y, true, Color.RED);
 		else
-			Text.drawString(g, text, x, y, true, Color.BLUE);
+			Texto.drawString(g, text, x, y, true, Color.BLUE);
 		bounds = new Rectangle(x - fm.stringWidth(text)/2, y - fm.getHeight()/2, fm.stringWidth(text), fm.getHeight());
 	}
 	

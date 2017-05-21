@@ -7,13 +7,13 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import com.aps.elementos_jogo.Assets;
+import com.aps.elementos_jogo.Elementos;
 import com.aps.jogo.Nivel;
-import com.aps.perifericos_entrada.KeyBoard;
-import com.aps.perifericos_entrada.MouseManager;
+import com.aps.perifericos_entrada.Teclado;
+import com.aps.perifericos_entrada.GerMouse;
 import com.aps.telas.ComoJogar;
-import com.aps.telas.GameState;
-import com.aps.telas.LevelSelectorState;
+import com.aps.telas.NivelAtual;
+import com.aps.telas.TelaNivel;
 import com.aps.telas.TelaInicio;
 import com.aps.telas.TelaMenu;
 import com.aps.telas.TelaAtual;
@@ -32,14 +32,14 @@ public class Window extends JFrame implements Runnable{
 	private double TARGETTIME = 1000000000/FPS;
 	private double delta = 0;
 	
-	private GameState gameState;
-	private LevelSelectorState levelSelectorState;
+	private NivelAtual nivelAtual;
+	private TelaNivel telaNivel;
 	private TelaMenu telaMenu;
 	private ComoJogar comoJogar;
 	private TelaInicio telaInicio;
 	
-	private KeyBoard keyBoard;
-	private MouseManager mouseManager;
+	private Teclado teclado;
+	private GerMouse gerMouse;
 	
 	//Construtor
 	public Window()
@@ -51,8 +51,8 @@ public class Window extends JFrame implements Runnable{
 		setLocationRelativeTo(null);
 		
 		canvas = new Canvas();
-		keyBoard = new KeyBoard();
-		mouseManager = new MouseManager();
+		teclado = new Teclado();
+		gerMouse = new GerMouse();
 		
 		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -60,11 +60,11 @@ public class Window extends JFrame implements Runnable{
 		canvas.setFocusable(true);
 		
 		add(canvas);
-		addMouseMotionListener(mouseManager);
-		addMouseListener(mouseManager);
-		canvas.addMouseListener(mouseManager);
-		canvas.addMouseMotionListener(mouseManager);
-		canvas.addKeyListener(keyBoard);
+		addMouseMotionListener(gerMouse);
+		addMouseListener(gerMouse);
+		canvas.addMouseListener(gerMouse);
+		canvas.addMouseMotionListener(gerMouse);
+		canvas.addKeyListener(teclado);
 		setVisible(true);
 	}
 	
@@ -73,8 +73,8 @@ public class Window extends JFrame implements Runnable{
 	}
 	
 	private void update(){
-		if(TelaAtual.currentState instanceof GameState)
-			keyBoard.update();
+		if(TelaAtual.currentState instanceof NivelAtual)
+			teclado.update();
 		
 		if(TelaAtual.currentState != null)
 			TelaAtual.currentState.update();
@@ -99,8 +99,8 @@ public class Window extends JFrame implements Runnable{
 		
 		for(int i = 0; i < Window.WIDTH/Nivel.TILESIZE + 1; i++)
 			for(int j = 0; j < Window.HEIGHT/Nivel.TILESIZE + 1; j++)
-				//g.drawImage(Assets.floor2, i*Nivel.TILESIZE, j*Nivel.TILESIZE, null);
-				g.drawImage(Assets.floor3, i*600, j*353, null);
+				//g.drawImage(Elementos.floor2, i*Nivel.TILESIZE, j*Nivel.TILESIZE, null);
+				g.drawImage(Elementos.floor3, i*600, j*353, null);
 	
 		if(TelaAtual.currentState != null)
 			TelaAtual.currentState.render(g);
@@ -114,11 +114,11 @@ public class Window extends JFrame implements Runnable{
 	
 	private void init()
 	{
-		Assets.init();
+		Elementos.init();
 		telaMenu = new TelaMenu(this);
-		gameState = new GameState(this);
+		nivelAtual = new NivelAtual(this);
 		telaInicio = new TelaInicio(this);
-		levelSelectorState = new LevelSelectorState(this);
+		telaNivel = new TelaNivel(this);
 		comoJogar = new ComoJogar(this);
 		
 		TelaAtual.currentState = telaInicio;
@@ -134,7 +134,7 @@ public class Window extends JFrame implements Runnable{
 		long time = 0;
 		
 		init();
-		Assets.tema.play();
+		Elementos.tema.play();
 		
 		while(running)
 		{
@@ -177,13 +177,13 @@ public class Window extends JFrame implements Runnable{
 		}
 	}
 	
-	public TelaAtual getGameState(){
-		return gameState;
+	public TelaAtual getNivelAtual(){
+		return nivelAtual;
 	}
 	public TelaAtual getLevelSelectorState(){
-		return levelSelectorState;
+		return telaNivel;
 	}
-	public TelaAtual getMenuState(){
+	public TelaAtual getTelaMenu(){
 		return telaMenu;
 	}
 	

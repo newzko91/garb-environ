@@ -3,8 +3,8 @@ package com.aps.telas;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.aps.elementos_jogo.Assets;
-import com.aps.elementos_jogo.Text;
+import com.aps.elementos_jogo.Elementos;
+import com.aps.elementos_jogo.Texto;
 import com.aps.main.Window;
 
 public class TelaInicio extends TelaAtual{
@@ -34,7 +34,7 @@ public class TelaInicio extends TelaAtual{
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				TelaAtual.currentState = window.getMenuState();
+				TelaAtual.currentState = window.getTelaMenu();
 			}
 			time = 0;
 		}
@@ -43,8 +43,8 @@ public class TelaInicio extends TelaAtual{
 
 	@Override
 	public void render(Graphics g) {
-		g.setFont(Assets.tamanho22);
-		Text.drawString(g, text, Window.WIDTH/2, Window.HEIGHT/2, true, Color.WHITE);
+		g.setFont(Elementos.tamanho22);
+		Texto.drawString(g, text, Window.WIDTH/2, Window.HEIGHT/2, true, Color.WHITE);
 	}
 	
 }

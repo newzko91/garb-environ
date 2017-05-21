@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
-public class Text {
+public class Texto {
 	public static void drawString(Graphics g, String text, int posX, int posY, boolean center, Color c)
 	{
 		g.setColor(c);
