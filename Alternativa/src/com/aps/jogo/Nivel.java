@@ -53,7 +53,7 @@ public class Nivel {
 			solved = false;
 		xOffset = (Tela.WIDTH - maze[0].length*TILESIZE)/2;
 		yOffset = (Tela.HEIGHT - maze.length*TILESIZE)/2;
-		texture = Elementos.PlayerFront;
+		texture = Elementos.jogadorFrente;
 		
 		botao.add(new Botao("RESTART", Tela.WIDTH/2 - 100, Tela.HEIGHT - 50, new Click(){
 
@@ -85,7 +85,7 @@ public class Nivel {
 		
 		player_row = plaStartRow;
 		player_col = plaStartCol;
-		texture = Elementos.PlayerFront;
+		texture = Elementos.jogadorFrente;
 	}
 	
 	
@@ -95,19 +95,19 @@ public class Nivel {
 		
 		if(Teclado.UP && time > DELAY){ // se o tempo for maior que o DELAY ai sim ele move o objeto.
 			move(-1, 0);
-			texture = Elementos.playerBack;
+			texture = Elementos.jogadorCostas;
 		}
 		if(Teclado.LEFT && time > DELAY){
 			move(0, -1);
-			texture = Elementos.playerLeft;
+			texture = Elementos.jogadorE;
 		}
 		if(Teclado.DOWN && time > DELAY){
 			move(1, 0);
-			texture = Elementos.PlayerFront;
+			texture = Elementos.jogadorFrente;
 		}
 		if(Teclado.RIGHT && time > DELAY){
 			move(0, 1);
-			texture = Elementos.playerRight;
+			texture = Elementos.jogadorD;
 		}
 		
 		for(int i = 0; i < botao.size(); i++)
