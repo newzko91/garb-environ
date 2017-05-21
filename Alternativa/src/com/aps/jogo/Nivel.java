@@ -5,7 +5,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 import com.aps.elementos_jogo.Elementos;
-import com.aps.main.Window;
+import com.aps.main.Tela;
 import com.aps.perifericos_entrada.Teclado;
 import com.aps.telas.TelaNivel;
 import com.aps.ui.Botao;
@@ -51,11 +51,11 @@ public class Nivel {
 			solved = true;
 		else
 			solved = false;
-		xOffset = (Window.WIDTH - maze[0].length*TILESIZE)/2;
-		yOffset = (Window.HEIGHT - maze.length*TILESIZE)/2;
+		xOffset = (Tela.WIDTH - maze[0].length*TILESIZE)/2;
+		yOffset = (Tela.HEIGHT - maze.length*TILESIZE)/2;
 		texture = Elementos.PlayerFront;
 		
-		botao.add(new Botao("RESTART", Window.WIDTH/2 - 100, Window.HEIGHT - 50, new Click(){
+		botao.add(new Botao("RESTART", Tela.WIDTH/2 - 100, Tela.HEIGHT - 50, new Click(){
 
 			@Override
 			public void onClick() {
@@ -64,7 +64,7 @@ public class Nivel {
 			}},
 				Elementos.tamanho30));
 		
-		botao.add(new Botao("BACK", Window.WIDTH/2 + 100, Window.HEIGHT - 50, new Click(){
+		botao.add(new Botao("BACK", Tela.WIDTH/2 + 100, Tela.HEIGHT - 50, new Click(){
 
 			@Override
 			public void onClick() {

@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import com.aps.elementos_jogo.Elementos;
 import com.aps.elementos_jogo.Texto;
 import com.aps.jogo.Nivel;
-import com.aps.main.Window;
+import com.aps.main.Tela;
 import com.aps.perifericos_entrada.GerMouse;
 import com.aps.ui.Botao;
 import com.aps.ui.Click;
@@ -21,23 +21,23 @@ public class TelaNivel extends TelaAtual{
 	private Nivel[] objNivel = new Nivel[5];
 	private static StringBuilder builder;
 	
-	private final int xOffset = (Window.WIDTH - DOUBLETILESIZE*5)/2;
-	private final int yOffset = (Window.HEIGHT - DOUBLETILESIZE*3)-100;
+	private final int xOffset = (Tela.WIDTH - DOUBLETILESIZE*5)/2;
+	private final int yOffset = (Tela.HEIGHT - DOUBLETILESIZE*3)-100;
 	
 	private Botao voltar;
 	
 	//Construtor 
-	public TelaNivel(Window window) {
-		super(window);
+	public TelaNivel(Tela tela) {
+		super(tela);
 		
 		for(int i = 0; i < objNivel.length; i++)
 			objNivel[i] = loadLevel("/levels/"+i+".txt");
 		
-		voltar = new Botao("VOLTAR", Window.WIDTH/2, Window.HEIGHT - 100, new Click(){
+		voltar = new Botao("VOLTAR", Tela.WIDTH/2, Tela.HEIGHT - 100, new Click(){
 
 			@Override
 			public void onClick() {
-				TelaAtual.currentState = window.getTelaMenu();
+				TelaAtual.currentState = tela.getTelaMenu();
 			}
 			
 		}, Elementos.tamanho30);
@@ -118,8 +118,8 @@ public class TelaNivel extends TelaAtual{
 		//Nivel 1
 		if(bounds0.contains(GerMouse.x, GerMouse.y)){
 			if(GerMouse.left && objNivel[0].isSolved()){
-				((NivelAtual)window.getNivelAtual()).setNivel(objNivel[0]);
-				TelaAtual.currentState = window.getNivelAtual();
+				((NivelAtual)tela.getNivelAtual()).setNivel(objNivel[0]);
+				TelaAtual.currentState = tela.getNivelAtual();
 			} g.drawImage(Elementos.outline2, bounds0.x, bounds0.y, null);
 			  if(objNivel[0].isSolved())
 				Texto.drawString(g, 1+"", xOffset + DOUBLETILESIZE/2,
@@ -140,8 +140,8 @@ public class TelaNivel extends TelaAtual{
 		//Nivel 2
 		if(bounds1.contains(GerMouse.x, GerMouse.y)){
 			if(GerMouse.left && objNivel[1].isSolved()){
-				((NivelAtual)window.getNivelAtual()).setNivel(objNivel[1]);
-				TelaAtual.currentState = window.getNivelAtual();
+				((NivelAtual)tela.getNivelAtual()).setNivel(objNivel[1]);
+				TelaAtual.currentState = tela.getNivelAtual();
 			} g.drawImage(Elementos.outline2, bounds1.x, bounds1.y, null);
 			  if(objNivel[1].isSolved())
 				Texto.drawString(g, 2+"", xOffset + DOUBLETILESIZE/2 + DOUBLETILESIZE,
@@ -162,8 +162,8 @@ public class TelaNivel extends TelaAtual{
 		//Nivel 3
 		if(bounds2.contains(GerMouse.x, GerMouse.y)){
 			if(GerMouse.left && objNivel[2].isSolved()){
-				((NivelAtual)window.getNivelAtual()).setNivel(objNivel[2]);
-				TelaAtual.currentState = window.getNivelAtual();
+				((NivelAtual)tela.getNivelAtual()).setNivel(objNivel[2]);
+				TelaAtual.currentState = tela.getNivelAtual();
 			} g.drawImage(Elementos.outline2, bounds2.x, bounds2.y, null);
 			  if(objNivel[2].isSolved())
 				Texto.drawString(g, 3+"", xOffset + DOUBLETILESIZE/2 + 2*DOUBLETILESIZE,
@@ -184,8 +184,8 @@ public class TelaNivel extends TelaAtual{
 		//Nivel 4
 		if(bounds3.contains(GerMouse.x, GerMouse.y)){
 			if(GerMouse.left && objNivel[3].isSolved()){
-				((NivelAtual)window.getNivelAtual()).setNivel(objNivel[3]);
-				TelaAtual.currentState = window.getNivelAtual();
+				((NivelAtual)tela.getNivelAtual()).setNivel(objNivel[3]);
+				TelaAtual.currentState = tela.getNivelAtual();
 			} g.drawImage(Elementos.outline2, bounds3.x, bounds3.y, null);
 			  if(objNivel[3].isSolved())
 				Texto.drawString(g, 4+"", xOffset + DOUBLETILESIZE/2 + 3*DOUBLETILESIZE,
@@ -206,8 +206,8 @@ public class TelaNivel extends TelaAtual{
 		//Nivel 5
 		if(bounds4.contains(GerMouse.x, GerMouse.y)){
 			if(GerMouse.left && objNivel[4].isSolved()){
-				((NivelAtual)window.getNivelAtual()).setNivel(objNivel[4]);
-				TelaAtual.currentState = window.getNivelAtual();
+				((NivelAtual)tela.getNivelAtual()).setNivel(objNivel[4]);
+				TelaAtual.currentState = tela.getNivelAtual();
 			} g.drawImage(Elementos.outline2, bounds4.x, bounds4.y, null);
 			  if(objNivel[4].isSolved())
 				Texto.drawString(g, 5+"", xOffset + DOUBLETILESIZE/2 + 4*DOUBLETILESIZE,

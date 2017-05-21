@@ -18,7 +18,7 @@ import com.aps.telas.TelaInicio;
 import com.aps.telas.TelaMenu;
 import com.aps.telas.TelaAtual;
 
-public class Window extends JFrame implements Runnable{
+public class Tela extends JFrame implements Runnable{
 	
 	public static final int WIDTH = 800, HEIGHT = 600;
 	private Canvas canvas;
@@ -42,7 +42,7 @@ public class Window extends JFrame implements Runnable{
 	private GerMouse gerMouse;
 	
 	//Construtor
-	public Window()
+	public Tela()
 	{
 		setTitle("UNIP - APS");
 		setSize(WIDTH, HEIGHT);
@@ -69,7 +69,7 @@ public class Window extends JFrame implements Runnable{
 	}
 	
 	public static void main(String[] args) {
-		new Window().start();
+		new Tela().start();
 	}
 	
 	private void update(){
@@ -97,8 +97,8 @@ public class Window extends JFrame implements Runnable{
 		
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		for(int i = 0; i < Window.WIDTH/Nivel.TILESIZE + 1; i++)
-			for(int j = 0; j < Window.HEIGHT/Nivel.TILESIZE + 1; j++)
+		for(int i = 0; i < Tela.WIDTH/Nivel.TILESIZE + 1; i++)
+			for(int j = 0; j < Tela.HEIGHT/Nivel.TILESIZE + 1; j++)
 				//g.drawImage(Elementos.floor2, i*Nivel.TILESIZE, j*Nivel.TILESIZE, null);
 				g.drawImage(Elementos.floor3, i*600, j*353, null);
 	

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import com.aps.elementos_jogo.Elementos;
 import com.aps.elementos_jogo.Texto;
-import com.aps.main.Window;
+import com.aps.main.Tela;
 
 public class TelaInicio extends TelaAtual{
 	
@@ -13,8 +13,8 @@ public class TelaInicio extends TelaAtual{
 	private String text = "";
 	private int index = 0;
 	private long time, lastTime;
-	public TelaInicio(Window window){
-		super(window);
+	public TelaInicio(Tela tela){
+		super(tela);
 		time = 0;
 		lastTime = System.currentTimeMillis();
 	}
@@ -34,7 +34,7 @@ public class TelaInicio extends TelaAtual{
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				TelaAtual.currentState = window.getTelaMenu();
+				TelaAtual.currentState = tela.getTelaMenu();
 			}
 			time = 0;
 		}
@@ -44,7 +44,7 @@ public class TelaInicio extends TelaAtual{
 	@Override
 	public void render(Graphics g) {
 		g.setFont(Elementos.tamanho22);
-		Texto.drawString(g, text, Window.WIDTH/2, Window.HEIGHT/2, true, Color.WHITE);
+		Texto.drawString(g, text, Tela.WIDTH/2, Tela.HEIGHT/2, true, Color.WHITE);
 	}
 	
 }
