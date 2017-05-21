@@ -3,14 +3,14 @@ package com.aps.telas;
 import java.awt.Graphics;
 
 import com.aps.jogo.Nivel;
-import com.aps.main.Tela;
+import com.aps.main.Window;
 
-public class NivelAtual extends TelaAtual{
+public class GameState extends TelaAtual{
 	
 	private Nivel nivel;
 	
-	public NivelAtual(Tela tela) {
-		super(tela);
+	public GameState(Window window) {
+		super(window);
 	}
 	
 	public void update() {

@@ -2,14 +2,14 @@ package com.aps.perifericos_entrada;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import com.aps.elementos_jogo.Elementos;
+import com.aps.elementos_jogo.Assets;
 
-public class GerMouse extends MouseAdapter{
+public class MouseManager extends MouseAdapter{
 	
 	public static int x, y;
 	public static boolean left;
 	
-	public GerMouse(){
+	public MouseManager(){
 		x = 0;
 		y = 0;
 	}
@@ -17,7 +17,7 @@ public class GerMouse extends MouseAdapter{
 	public void mousePressed(MouseEvent e){
 		if(e.getButton() == MouseEvent.BUTTON1)
 			left = true;
-			Elementos.movimento.play();
+			Assets.movimento.play();
 		
 	}
 	

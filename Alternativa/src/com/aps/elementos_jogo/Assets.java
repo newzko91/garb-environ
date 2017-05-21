@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 import com.aps.jogo.Nivel;
 
-public class Elementos {
+public class Assets {
 	
 	public static Image playerLeft, playerBack, playerRight, PlayerFront;
 	public static Image floor, floor2, floor3, floor4,wall, boxOn, boxOff, spot, outline, outline2;
@@ -49,9 +49,10 @@ public class Elementos {
 	
 	}
 	
-	public static BufferedImage loadImage(String path){
+	public static BufferedImage loadImage(String path)
+	{
 		try {
-			return ImageIO.read(Elementos.class.getResource(path));
+			return ImageIO.read(Assets.class.getResource(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

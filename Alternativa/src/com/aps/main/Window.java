@@ -7,18 +7,18 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import com.aps.elementos_jogo.Elementos;
+import com.aps.elementos_jogo.Assets;
 import com.aps.jogo.Nivel;
-import com.aps.perifericos_entrada.Teclado;
-import com.aps.perifericos_entrada.GerMouse;
+import com.aps.perifericos_entrada.KeyBoard;
+import com.aps.perifericos_entrada.MouseManager;
 import com.aps.telas.ComoJogar;
-import com.aps.telas.NivelAtual;
-import com.aps.telas.TelaNivel;
+import com.aps.telas.GameState;
+import com.aps.telas.LevelSelectorState;
 import com.aps.telas.TelaInicio;
 import com.aps.telas.TelaMenu;
 import com.aps.telas.TelaAtual;
 
-public class Tela extends JFrame implements Runnable{
+public class Window extends JFrame implements Runnable{
 	
 	public static final int WIDTH = 800, HEIGHT = 600;
 	private Canvas canvas;
@@ -32,17 +32,17 @@ public class Tela extends JFrame implements Runnable{
 	private double TARGETTIME = 1000000000/FPS;
 	private double delta = 0;
 	
-	private NivelAtual nivelAtual;
-	private TelaNivel telaNivel;
+	private GameState gameState;
+	private LevelSelectorState levelSelectorState;
 	private TelaMenu telaMenu;
 	private ComoJogar comoJogar;
 	private TelaInicio telaInicio;
 	
-	private Teclado teclado;
-	private GerMouse gerMouse;
+	private KeyBoard keyBoard;
+	private MouseManager mouseManager;
 	
 	//Construtor
-	public Tela()
+	public Window()
 	{
 		setTitle("UNIP - APS");
 		setSize(WIDTH, HEIGHT);
@@ -51,8 +51,8 @@ public class Tela extends JFrame implements Runnable{
 		setLocationRelativeTo(null);
 		
 		canvas = new Canvas();
-		teclado = new Teclado();
-		gerMouse = new GerMouse();
+		keyBoard = new KeyBoard();
+		mouseManager = new MouseManager();
 		
 		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -60,21 +60,21 @@ public class Tela extends JFrame implements Runnable{
 		canvas.setFocusable(true);
 		
 		add(canvas);
-		addMouseMotionListener(gerMouse);
-		addMouseListener(gerMouse);
-		canvas.addMouseListener(gerMouse);
-		canvas.addMouseMotionListener(gerMouse);
-		canvas.addKeyListener(teclado);
+		addMouseMotionListener(mouseManager);
+		addMouseListener(mouseManager);
+		canvas.addMouseListener(mouseManager);
+		canvas.addMouseMotionListener(mouseManager);
+		canvas.addKeyListener(keyBoard);
 		setVisible(true);
 	}
 	
 	public static void main(String[] args) {
-		new Tela().start();
+		new Window().start();
 	}
 	
 	private void update(){
-		if(TelaAtual.currentState instanceof NivelAtual)
-			teclado.update();
+		if(TelaAtual.currentState instanceof GameState)
+			keyBoard.update();
 		
 		if(TelaAtual.currentState != null)
 			TelaAtual.currentState.update();
@@ -97,10 +97,10 @@ public class Tela extends JFrame implements Runnable{
 		
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		for(int i = 0; i < Tela.WIDTH/Nivel.TILESIZE + 1; i++)
-			for(int j = 0; j < Tela.HEIGHT/Nivel.TILESIZE + 1; j++)
-				//g.drawImage(Elementos.floor2, i*Nivel.TILESIZE, j*Nivel.TILESIZE, null);
-				g.drawImage(Elementos.floor3, i*600, j*353, null);
+		for(int i = 0; i < Window.WIDTH/Nivel.TILESIZE + 1; i++)
+			for(int j = 0; j < Window.HEIGHT/Nivel.TILESIZE + 1; j++)
+				//g.drawImage(Assets.floor2, i*Nivel.TILESIZE, j*Nivel.TILESIZE, null);
+				g.drawImage(Assets.floor3, i*600, j*353, null);
 	
 		if(TelaAtual.currentState != null)
 			TelaAtual.currentState.render(g);
@@ -114,11 +114,11 @@ public class Tela extends JFrame implements Runnable{
 	
 	private void init()
 	{
-		Elementos.init();
+		Assets.init();
 		telaMenu = new TelaMenu(this);
-		nivelAtual = new NivelAtual(this);
+		gameState = new GameState(this);
 		telaInicio = new TelaInicio(this);
-		telaNivel = new TelaNivel(this);
+		levelSelectorState = new LevelSelectorState(this);
 		comoJogar = new ComoJogar(this);
 		
 		TelaAtual.currentState = telaInicio;
@@ -134,7 +134,7 @@ public class Tela extends JFrame implements Runnable{
 		long time = 0;
 		
 		init();
-		Elementos.tema.play();
+		Assets.tema.play();
 		
 		while(running)
 		{
@@ -177,13 +177,13 @@ public class Tela extends JFrame implements Runnable{
 		}
 	}
 	
-	public TelaAtual getNivelAtual(){
-		return nivelAtual;
+	public TelaAtual getGameState(){
+		return gameState;
 	}
 	public TelaAtual getLevelSelectorState(){
-		return telaNivel;
+		return levelSelectorState;
 	}
-	public TelaAtual getTelaMenu(){
+	public TelaAtual getMenuState(){
 		return telaMenu;
 	}
 	

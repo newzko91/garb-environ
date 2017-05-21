@@ -2,21 +2,21 @@ package com.aps.telas;
 
 import java.awt.Graphics;
 
-import com.aps.main.Tela;
+import com.aps.main.Window;
 
 public abstract class TelaAtual {
 	
 	public static TelaAtual currentState = null;
 	
 	
-	protected Tela tela;
+	protected Window window;
 	
 	public static int ID = 0;
 	
 	private int id;
 	
-	public TelaAtual(Tela tela){
-		this.tela = tela;
+	public TelaAtual(Window window){
+		this.window = window;
 
 	}
 	
