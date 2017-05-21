@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import com.aps.elementos_jogo.Assets;
 import com.aps.elementos_jogo.Text;
-import com.aps.main.Window;
+import com.aps.main.Tela;
 import com.aps.ui.Botao;
 import com.aps.ui.Click;
 
@@ -14,37 +14,35 @@ public class TelaMenu extends TelaAtual{
 	
 	private ArrayList<Botao> botao = new ArrayList<Botao>();
 	
-	public TelaMenu(Window window){
-		super(window);
-		botao.add(new Botao("JOGAR", Window.WIDTH/2, Window.HEIGHT/2 - 50, new Click(){
+	public TelaMenu(Tela tela){
+		super(tela);
+		botao.add(new Botao("JOGAR", Tela.WIDTH/2, Tela.HEIGHT/2 - 50, new Click(){
 
 			public void onClick() {
-				TelaAtual.currentState = window.getLevelSelectorState();
+				TelaAtual.telaAtual = tela.getCarregaNivel();
 			}}, Assets.tamanho48));
 		
-		botao.add(new Botao("INSTRUCOES", Window.WIDTH/2, Window.HEIGHT/2 + 50, new Click(){
+		botao.add(new Botao("INSTRUCOES", Tela.WIDTH/2, Tela.HEIGHT/2 + 50, new Click(){
 
 			public void onClick() {
-				TelaAtual.currentState = window.getComoJogar();
+				TelaAtual.telaAtual = tela.getComoJogar();
 			}}, Assets.tamanho48));
 		
-		botao.add(new Botao("SAIR", Window.WIDTH/2, Window.HEIGHT/2 + 150, new Click(){
+		botao.add(new Botao("SAIR", Tela.WIDTH/2, Tela.HEIGHT/2 + 150, new Click(){
 
 			public void onClick() {
 				System.exit(1);
 			}}, Assets.tamanho48));
 	}
 	
-	@Override
 	public void update() {
 		for(int i = 0; i < botao.size(); i++)
 			botao.get(i).update();
 	}
 
-	@Override
 	public void render(Graphics g) {
 		g.setFont(Assets.tamanho48);
-		Text.drawString(g, "APS | JAVA", Window.WIDTH/2, Window.HEIGHT/2 - 200, true, Color.ORANGE);
+		Text.drawString(g, "APS | JAVA", Tela.WIDTH/2, Tela.HEIGHT/2 - 200, true, Color.ORANGE);
 		for(int i = 0; i < botao.size(); i++)
 			botao.get(i).render(g);
 	}

@@ -12,13 +12,14 @@ import com.aps.jogo.Nivel;
 import com.aps.perifericos_entrada.KeyBoard;
 import com.aps.perifericos_entrada.MouseManager;
 import com.aps.telas.ComoJogar;
-import com.aps.telas.GameState;
-import com.aps.telas.LevelSelectorState;
+import com.aps.telas.Continuar;
+import com.aps.telas.EtapaJogo;
+import com.aps.telas.CarregaNivel;
 import com.aps.telas.TelaInicio;
 import com.aps.telas.TelaMenu;
 import com.aps.telas.TelaAtual;
 
-public class Window extends JFrame implements Runnable{
+public class Tela extends JFrame implements Runnable{
 	
 	public static final int WIDTH = 800, HEIGHT = 600;
 	private Canvas canvas;
@@ -32,17 +33,18 @@ public class Window extends JFrame implements Runnable{
 	private double TARGETTIME = 1000000000/FPS;
 	private double delta = 0;
 	
-	private GameState gameState;
-	private LevelSelectorState levelSelectorState;
+	private EtapaJogo etapaJogo;
+	private CarregaNivel carregaNivel;
 	private TelaMenu telaMenu;
 	private ComoJogar comoJogar;
 	private TelaInicio telaInicio;
+	private Continuar continuar;
 	
 	private KeyBoard keyBoard;
 	private MouseManager mouseManager;
 	
 	//Construtor
-	public Window()
+	public Tela()
 	{
 		setTitle("UNIP - APS");
 		setSize(WIDTH, HEIGHT);
@@ -69,15 +71,15 @@ public class Window extends JFrame implements Runnable{
 	}
 	
 	public static void main(String[] args) {
-		new Window().start();
+		new Tela().start();
 	}
 	
 	private void update(){
-		if(TelaAtual.currentState instanceof GameState)
+		if(TelaAtual.telaAtual instanceof EtapaJogo)
 			keyBoard.update();
 		
-		if(TelaAtual.currentState != null)
-			TelaAtual.currentState.update();
+		if(TelaAtual.telaAtual != null)
+			TelaAtual.telaAtual.update();
 	}
 
 	private void draw(){
@@ -91,23 +93,18 @@ public class Window extends JFrame implements Runnable{
 		
 		g = bs.getDrawGraphics();
 		
-		//-----------------------
-		
 		g.setColor(Color.GRAY);
 		
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		for(int i = 0; i < Window.WIDTH/Nivel.TILESIZE + 1; i++)
-			for(int j = 0; j < Window.HEIGHT/Nivel.TILESIZE + 1; j++)
+		for(int i = 0; i < Tela.WIDTH/Nivel.TILESIZE + 1; i++)
+			for(int j = 0; j < Tela.HEIGHT/Nivel.TILESIZE + 1; j++)
 				//g.drawImage(Assets.floor2, i*Nivel.TILESIZE, j*Nivel.TILESIZE, null);
-				g.drawImage(Assets.floor3, i*600, j*353, null);
+				g.drawImage(Assets.floor3, i*800, j*600, null);
 	
-		if(TelaAtual.currentState != null)
-			TelaAtual.currentState.render(g);
+		if(TelaAtual.telaAtual != null)
+			TelaAtual.telaAtual.render(g);
 		
-		//g.drawString(""+AVERAGEFPS, 10, 20);
-		
-		//---------------------
 		g.dispose();
 		bs.show();
 	}
@@ -116,12 +113,15 @@ public class Window extends JFrame implements Runnable{
 	{
 		Assets.init();
 		telaMenu = new TelaMenu(this);
-		gameState = new GameState(this);
+		etapaJogo = new EtapaJogo(this);
 		telaInicio = new TelaInicio(this);
-		levelSelectorState = new LevelSelectorState(this);
+		carregaNivel = new CarregaNivel(this);
 		comoJogar = new ComoJogar(this);
+		continuar = new Continuar(this);
 		
-		TelaAtual.currentState = telaInicio;
+		TelaAtual.telaAtual = telaInicio;
+		
+		Assets.tema.play_more();
 	}
 	
 	
@@ -134,7 +134,7 @@ public class Window extends JFrame implements Runnable{
 		long time = 0;
 		
 		init();
-		Assets.tema.play();
+	
 		
 		while(running)
 		{
@@ -155,6 +155,7 @@ public class Window extends JFrame implements Runnable{
 				frames = 0;
 				time = 0;
 			}
+
 		}
 		
 		stop();
@@ -177,18 +178,22 @@ public class Window extends JFrame implements Runnable{
 		}
 	}
 	
-	public TelaAtual getGameState(){
-		return gameState;
+	public TelaAtual getEtapaJogo(){
+		return etapaJogo;
 	}
-	public TelaAtual getLevelSelectorState(){
-		return levelSelectorState;
+	public TelaAtual getCarregaNivel(){
+		return carregaNivel;
 	}
-	public TelaAtual getMenuState(){
+	public TelaAtual getTelaMenu(){
 		return telaMenu;
 	}
 	
 	public TelaAtual getComoJogar(){
 		return comoJogar;
+	}
+	
+	public TelaAtual getContinuar(){
+		return continuar;
 	}
 	
 	

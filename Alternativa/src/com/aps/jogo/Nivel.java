@@ -5,9 +5,9 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 import com.aps.elementos_jogo.Assets;
-import com.aps.main.Window;
+import com.aps.main.Tela;
 import com.aps.perifericos_entrada.KeyBoard;
-import com.aps.telas.LevelSelectorState;
+import com.aps.telas.CarregaNivel;
 import com.aps.telas.TelaAtual;
 import com.aps.ui.Botao;
 import com.aps.ui.Click;
@@ -28,14 +28,16 @@ public class Nivel {
 	private final int DELAY = 200;
 
 	private boolean solved;
-	private LevelSelectorState levelSelectorState;
+	private CarregaNivel carregaNivel;
 	public static int ID = 0;
 	private int id;
 	
+	private Tela tela;
+	
 	private ArrayList<Botao> botao = new ArrayList<Botao>();
 	
-	public Nivel(int[][] maze, int player_row, int player_col, LevelSelectorState levelSelectorState){
-		this.levelSelectorState = levelSelectorState;
+	public Nivel(int[][] maze, int player_row, int player_col, CarregaNivel carregaNivel){
+		this.carregaNivel = carregaNivel;
 		this.maze = maze;
 		ID++; 
 		id = ID;
@@ -51,11 +53,11 @@ public class Nivel {
 			solved = true;
 		else
 			solved = false;
-		xOffset = (Window.WIDTH - maze[0].length*TILESIZE)/2;
-		yOffset = (Window.HEIGHT - maze.length*TILESIZE)/2;
+		xOffset = (Tela.WIDTH - maze[0].length*TILESIZE)/2;
+		yOffset = (Tela.HEIGHT - maze.length*TILESIZE)/2;
 		texture = Assets.PlayerFront;
 		
-		botao.add(new Botao("RESTART", Window.WIDTH/2 - 100, Window.HEIGHT - 50, new Click(){
+		botao.add(new Botao("RECOMECAR", Tela.WIDTH/2 - 100, Tela.HEIGHT - 50, new Click(){
 
 			@Override
 			public void onClick() {
@@ -64,11 +66,10 @@ public class Nivel {
 			}},
 				Assets.tamanho30));
 		
-		botao.add(new Botao("BACK", Window.WIDTH/2 + 100, Window.HEIGHT - 50, new Click(){
+		botao.add(new Botao("VOLTAR", Tela.WIDTH/2 + 100, Tela.HEIGHT - 50, new Click(){
 
-			@Override
 			public void onClick() {
-				TelaAtual.currentState = levelSelectorState;
+				TelaAtual.telaAtual = carregaNivel;
 				
 			}},
 				Assets.tamanho30));
@@ -119,9 +120,13 @@ public class Nivel {
 				if(maze[row][col] == 2)
 					return;
 		
-		levelSelectorState.getLevels()[id].setSolved(true);
+		carregaNivel.getNivel()[id].setSolved(true);
 		Assets.sucesso.play();
-		TelaAtual.currentState = levelSelectorState; //quando solucionado igual a verdadeiro, vai pra tela dos niveis.
+		TelaAtual.telaAtual = carregaNivel; //quando solucionado igual a verdadeiro, vai pra tela dos niveis.
+		
+		if(carregaNivel.getNivel()[5].isSolved()){
+			TelaAtual.telaAtual = tela.getContinuar();
+		}
 		
 	}
 	
