@@ -12,7 +12,7 @@ import com.aps.jogo.Nivel;
 import com.aps.perifericos_entrada.KeyBoard;
 import com.aps.perifericos_entrada.MouseManager;
 import com.aps.telas.ComoJogar;
-import com.aps.telas.Continuar;
+//import com.aps.telas.Continuar;
 import com.aps.telas.EtapaJogo;
 import com.aps.telas.CarregaNivel;
 import com.aps.telas.TelaInicio;
@@ -38,7 +38,7 @@ public class Tela extends JFrame implements Runnable{
 	private TelaMenu telaMenu;
 	private ComoJogar comoJogar;
 	private TelaInicio telaInicio;
-	private Continuar continuar;
+	//private Continuar continuar;
 	
 	private KeyBoard keyBoard;
 	private MouseManager mouseManager;
@@ -117,7 +117,7 @@ public class Tela extends JFrame implements Runnable{
 		telaInicio = new TelaInicio(this);
 		carregaNivel = new CarregaNivel(this);
 		comoJogar = new ComoJogar(this);
-		continuar = new Continuar(this);
+		//continuar = new Continuar(this);
 		
 		TelaAtual.telaAtual = telaInicio;
 		
@@ -192,9 +192,9 @@ public class Tela extends JFrame implements Runnable{
 		return comoJogar;
 	}
 	
-	public TelaAtual getContinuar(){
+	/*public TelaAtual getContinuar(){
 		return continuar;
-	}
+	}*/
 	
 	
 }

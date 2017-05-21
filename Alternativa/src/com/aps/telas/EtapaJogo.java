@@ -13,10 +13,12 @@ public class EtapaJogo extends TelaAtual{
 		super(tela);
 	}
 	
+	@Override
 	public void update() {
 		nivel.update();
 	}
-
+	
+	@Override
 	public void render(Graphics g) {
 		nivel.render(g);
 	}

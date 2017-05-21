@@ -95,12 +95,11 @@ public class CarregaNivel extends TelaAtual{
 		}
 	}
 	
-	@Override
+	
 	public void update(){
 		voltar.update();
 	}
 	
-	@Override
 	public void render(Graphics g){
 		voltar.render(g);
 		int counter = 1;
@@ -146,7 +145,6 @@ public class CarregaNivel extends TelaAtual{
 		//Nivel 2
 		if(bounds1.contains(MouseManager.x, MouseManager.y)){
 			if(MouseManager.left && objNivel[1].isSolved()){
-				TelaAtual.telaAtual = null;
 				((EtapaJogo)tela.getTelaMenu()).setNivel(objNivel[1]);
 				TelaAtual.telaAtual = tela.getTelaMenu();
 			} g.drawImage(Assets.outline2, bounds1.x, bounds1.y, null);

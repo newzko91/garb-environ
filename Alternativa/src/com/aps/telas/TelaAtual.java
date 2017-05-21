@@ -8,16 +8,10 @@ public abstract class TelaAtual {
 	
 	public static TelaAtual telaAtual = null;
 	
-	
 	protected Tela tela;
-	
-	public static int ID = 0;
-	
-	private int id;
 	
 	public TelaAtual(Tela tela){
 		this.tela = tela;
-
 	}
 	
 	public abstract void update();

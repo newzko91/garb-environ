@@ -32,8 +32,6 @@ public class Nivel {
 	public static int ID = 0;
 	private int id;
 	
-	private Tela tela;
-	
 	private ArrayList<Botao> botao = new ArrayList<Botao>();
 	
 	public Nivel(int[][] maze, int player_row, int player_col, CarregaNivel carregaNivel){
@@ -123,10 +121,6 @@ public class Nivel {
 		carregaNivel.getNivel()[id].setSolved(true);
 		Assets.sucesso.play();
 		TelaAtual.telaAtual = carregaNivel; //quando solucionado igual a verdadeiro, vai pra tela dos niveis.
-		
-		if(carregaNivel.getNivel()[5].isSolved()){
-			TelaAtual.telaAtual = tela.getContinuar();
-		}
 		
 	}
 	
