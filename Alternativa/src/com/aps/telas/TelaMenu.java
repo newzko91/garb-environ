@@ -19,13 +19,13 @@ public class TelaMenu extends TelaAtual{
 		botao.add(new Botao("JOGAR", Tela.WIDTH/2, Tela.HEIGHT/2 - 50, new Click(){
 
 			public void onClick() {
-				TelaAtual.nivelAtual = tela.getLevelSelectorState();
+				TelaAtual.currentState = tela.getLevelSelectorState();
 			}}, Elementos.tamanho48));
 		
 		botao.add(new Botao("INSTRUCOES", Tela.WIDTH/2, Tela.HEIGHT/2 + 50, new Click(){
 
 			public void onClick() {
-				TelaAtual.nivelAtual = tela.getComoJogar();
+				TelaAtual.currentState = tela.getComoJogar();
 			}}, Elementos.tamanho48));
 		
 		botao.add(new Botao("SAIR", Tela.WIDTH/2, Tela.HEIGHT/2 + 150, new Click(){

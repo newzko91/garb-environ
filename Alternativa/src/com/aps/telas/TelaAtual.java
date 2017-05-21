@@ -6,7 +6,7 @@ import com.aps.main.Tela;
 
 public abstract class TelaAtual {
 	
-	public static TelaAtual nivelAtual = null;
+	public static TelaAtual currentState = null;
 	
 	
 	protected Tela tela;
