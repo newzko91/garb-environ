@@ -1,7 +1,8 @@
 /.DS_Store
-/gfx/
-/input/
-/main/
-/sokoban/
-/states/
+/com.aps.elementos_jogo/
+/com.aps.perifericos_entrada/
+/com.aps.main/
+/com.aps.jogo/
+/com.aps.telas/
 /ui/
+/com/
