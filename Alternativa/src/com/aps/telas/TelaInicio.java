@@ -34,7 +34,7 @@ public class TelaInicio extends TelaAtual{
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				TelaAtual.currentState = tela.getTelaMenu();
+				TelaAtual.nivelAtual = tela.getTelaMenu();
 			}
 			time = 0;
 		}

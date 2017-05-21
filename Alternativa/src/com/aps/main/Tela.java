@@ -73,11 +73,11 @@ public class Tela extends JFrame implements Runnable{
 	}
 	
 	private void update(){
-		if(TelaAtual.currentState instanceof NivelAtual)
+		if(TelaAtual.nivelAtual instanceof NivelAtual)
 			teclado.update();
 		
-		if(TelaAtual.currentState != null)
-			TelaAtual.currentState.update();
+		if(TelaAtual.nivelAtual != null)
+			TelaAtual.nivelAtual.update();
 	}
 
 	private void draw(){
@@ -102,8 +102,8 @@ public class Tela extends JFrame implements Runnable{
 				//g.drawImage(Elementos.floor2, i*Nivel.TILESIZE, j*Nivel.TILESIZE, null);
 				g.drawImage(Elementos.floor3, i*600, j*353, null);
 	
-		if(TelaAtual.currentState != null)
-			TelaAtual.currentState.render(g);
+		if(TelaAtual.nivelAtual != null)
+			TelaAtual.nivelAtual.render(g);
 		
 		//g.drawString(""+AVERAGEFPS, 10, 20);
 		
@@ -121,7 +121,7 @@ public class Tela extends JFrame implements Runnable{
 		telaNivel = new TelaNivel(this);
 		comoJogar = new ComoJogar(this);
 		
-		TelaAtual.currentState = telaInicio;
+		TelaAtual.nivelAtual = telaInicio;
 	}
 	
 	

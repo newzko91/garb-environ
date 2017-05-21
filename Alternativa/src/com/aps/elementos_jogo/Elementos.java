@@ -14,7 +14,7 @@ import com.aps.jogo.Nivel;
 
 public class Elementos {
 	
-	public static Image jogadorE, jogadorCostas, jogadorD, jogadorFrente;
+	public static Image playerLeft, playerBack, playerRight, PlayerFront;
 	public static Image floor, floor2, floor3, floor4,wall, boxOn, boxOff, spot, outline, outline2;
 	public static Font tamanho30, tamanho48, tamanho22, tamanho40;
 	public static Audio tema, sucesso, movimento;
@@ -22,10 +22,10 @@ public class Elementos {
 	
 	public static void init()
 	{
-		jogadorE = loadImage("/player/left.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);
-		jogadorCostas = loadImage("/player/back.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);
-		jogadorFrente = loadImage("/player/front.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);
-		jogadorD = loadImage("/player/right.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);
+		playerLeft = loadImage("/player/left.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);
+		playerBack = loadImage("/player/back.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);
+		PlayerFront = loadImage("/player/front.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);
+		playerRight = loadImage("/player/right.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);
 		
 		floor = loadImage("/blocks/ground.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);
 		floor2 = loadImage("/blocks/ground2.png").getScaledInstance(Nivel.TILESIZE, Nivel.TILESIZE, BufferedImage.SCALE_DEFAULT);

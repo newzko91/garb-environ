@@ -20,7 +20,7 @@ public class ComoJogar extends TelaAtual{
 		voltar = new Botao("VOLTAR", Tela.WIDTH/2, Tela.HEIGHT - 100, new Click(){
 
 			public void onClick() {
-				TelaAtual.currentState = tela.getTelaMenu();
+				TelaAtual.nivelAtual = tela.getTelaMenu();
 			}
 			
 		}, Elementos.tamanho30);
