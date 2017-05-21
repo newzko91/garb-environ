@@ -49,8 +49,7 @@ public class Elementos {
 	
 	}
 	
-	public static BufferedImage loadImage(String path)
-	{
+	public static BufferedImage loadImage(String path){
 		try {
 			return ImageIO.read(Elementos.class.getResource(path));
 		} catch (IOException e) {
