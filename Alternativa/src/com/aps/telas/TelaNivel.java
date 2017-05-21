@@ -13,9 +13,8 @@ import com.aps.elementos_jogo.Texto;
 import com.aps.jogo.Nivel;
 import com.aps.main.Window;
 import com.aps.perifericos_entrada.GerMouse;
-
-import ui.Botao;
-import ui.Click;
+import com.aps.ui.Botao;
+import com.aps.ui.Click;
 
 public class TelaNivel extends TelaAtual{
 	private final int DOUBLETILESIZE = 64;

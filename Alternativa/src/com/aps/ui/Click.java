@@ -1,4 +1,4 @@
-package ui;
+package com.aps.ui;
 
 public interface Click {
 	

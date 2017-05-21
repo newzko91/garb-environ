@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import com.aps.elementos_jogo.Elementos;
 import com.aps.elementos_jogo.Texto;
 import com.aps.main.Window;
-
-import ui.Botao;
-import ui.Click;
+import com.aps.ui.Botao;
+import com.aps.ui.Click;
 
 public class TelaMenu extends TelaAtual{
 	

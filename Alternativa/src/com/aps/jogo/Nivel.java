@@ -8,10 +8,9 @@ import com.aps.elementos_jogo.Elementos;
 import com.aps.main.Window;
 import com.aps.perifericos_entrada.Teclado;
 import com.aps.telas.TelaNivel;
+import com.aps.ui.Botao;
+import com.aps.ui.Click;
 import com.aps.telas.TelaAtual;
-
-import ui.Botao;
-import ui.Click;
 
 public class Nivel {
 	
